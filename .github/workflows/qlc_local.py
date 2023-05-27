@@ -3,7 +3,7 @@ import sys
 import openai
 import json
 
-def main(files, key):
+def main(key, files):
     openai.api_key = key
     for source_file in files:
         source_file = source_file.strip("./")
@@ -49,5 +49,5 @@ def main(files, key):
         print(f"::set-output name=body::{body}")
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2:])
  
