@@ -31,7 +31,7 @@ def main(key, files):
         # Open issue on the repository with the question
         title = "🤖 Question about code!"
         body = "**" + response_json['question'] + "**"
-        body += "\n\n(Context)[source_file]"
+        body += "\n\n(Context)[" + source_file + "]"
         body += "\n\nA: " + response_json['answer1']
         body += "\n\n<details><summary>...</summary>"
         body += "\n\n_Explanation: " + response_json['explanation1'] + "_"
