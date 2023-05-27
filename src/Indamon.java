@@ -7,7 +7,7 @@ class Indamon {
     boolean fainted;
 
     public static void main(String[] args) {
-        // create a new "Student" object
+        // create a new "Indamon" object
         Indamon glassey = new Indamon();
     
         // assign the instance variables to meaningful values
