@@ -29,8 +29,9 @@ def main(key, files):
         response_json = json.loads(question)
 
         # Open issue on the repository with the question
-        title = "🤖 Question about code!"
-        body = ("**" + response_json['question'] + "**" +
+        title = "🤖 Answer this question about your code!"
+        body = ("** Considering [`/src/" + source_file + "`](../blob/master/src/" + source_file + ")" +
+            "**" + response_json['question'] + "**" +
             "(Context)[" + source_file + "]" + "<br />" +
             "A: " + response_json['answer1'] + "<br />" +
             "<details><summary>...</summary>" +
