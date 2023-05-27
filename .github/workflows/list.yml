@@ -3,7 +3,7 @@ run-name: Detect when `AMA` issue is opened
 
 on:
   issues:
-    [opened]
+    types: [opened]
 
 jobs:
   runs-script:
