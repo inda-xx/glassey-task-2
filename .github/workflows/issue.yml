@@ -8,6 +8,7 @@ on:
 jobs:
   List-Java-Files:
     runs-on: ubuntu-latest
+    if: ${{ github.event.issue.title == 'AMA' || github.event.issue.title == 'ama' }}
     
     steps:
     - name: Checkout repository
@@ -26,6 +27,6 @@ jobs:
         -H "Accept: application/vnd.github.v3+json" \
         https://api.github.com/repos/$GITHUB_REPOSITORY/issues/${{ github.event.issue.number }} \
         -d '{
-        "title": "New issue title",
+        "title": "🤖 Answer this Question!",
         "body": "New issue body"
         }'
