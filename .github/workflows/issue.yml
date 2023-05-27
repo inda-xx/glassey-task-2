@@ -20,12 +20,14 @@ jobs:
           pip install -r .github/workflows/requirements.txt
 
     - name: Get all source files
+      id: list_files
       run: |
         echo "::set-output name=files::$(find . -name "*.java")"
         
     - name: Generate question
+      id: generate_qn
       run: |
-        python .github/workflows/qlc_local.py ${{ steps.list_files.outputs.files }} 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
+        python .github/workflows/qlc_local.py ${{ steps.list_files.outputs.files }} ${{ secrets.OPENAI_TOKEN }}
     
     - name: Update issue
       env:
@@ -36,6 +38,6 @@ jobs:
         -H "Accept: application/vnd.github.v3+json" \
         https://api.github.com/repos/$GITHUB_REPOSITORY/issues/${{ github.event.issue.number }} \
         -d '{
-        "title": ${{ steps.list_files.outputs.title }},
-        "body": ${{ steps.list_files.outputs.body }}
+        "title": ${{ steps.question_qn.outputs.title }},
+        "body": ${{ steps.question_qn.outputs.body }}
         }'
