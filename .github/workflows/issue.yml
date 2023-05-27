@@ -19,9 +19,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r .github/workflows/requirements.txt
 
-    - name: List all Java files
+    - name: Get all source files
       run: |
-        find . -name "*.java" > java_files.txt
+        echo "::set-output name=files::$(find . -name "*.java")"
+        
+    - name: Generate question
+      run: |
+        python qlc_local.py ${{ steps.list_files.outputs.files }} ${{ secrets.OPENAI_TOKEN }}
     
     - name: Update issue
       env:
@@ -32,6 +36,6 @@ jobs:
         -H "Accept: application/vnd.github.v3+json" \
         https://api.github.com/repos/$GITHUB_REPOSITORY/issues/${{ github.event.issue.number }} \
         -d '{
-        "title": "🤖 Answer this Question!",
-        "body": "New issue body"
+        "title": ${{ steps.list_files.outputs.title }},
+        "body": ${{ steps.list_files.outputs.body }}
         }'
