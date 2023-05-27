@@ -33,17 +33,17 @@ def main(key, files):
         body = ("**" + response_json['question'] + "**" +
             "\\n(Context)[" + source_file + "]" +
             "\\nA: " + response_json['answer1'] +
-            "\\n<details><summary>...</summary>" +
+            "\\n\<details\>\<summary\>...\<\/summary\>" +
             "\\n_Explanation: " + response_json['explanation1'] + "_" +
-            "\\n</details>" +
+            "\\n\<\/details\>" +
             "\\nB: " + response_json['answer2'] +
-            "\\n<details><summary>...</summary>" +
+            "\\n\<details\>\<summary\>...\<\/summary\>" +
             "\\n_Explanation: " + response_json['explanation2'] + "_" +
-            "\\n</details>" +
+            "\\n\<\/details\>" +
             "\\nC: " + response_json['answer3'] +
-            "\\n<details><summary>...</summary>" +
+            "\\n\<details\>\<summary\>...\<\/summary\>" +
             "\\n_Explanation: " + response_json['explanation3'] + "_" +
-            "\\n</details>")
+            "\\n\<\/details\>")
 
         print(f"::set-output name=title::{title}")
         print(f"::set-output name=body::{body}")
