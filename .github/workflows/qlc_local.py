@@ -30,20 +30,20 @@ def main(key, files):
 
         # Open issue on the repository with the question
         title = "🤖 Question about code!"
-        body = "**" + response_json['question'] + "**"
-        body += "\n\n(Context)[" + source_file + "]"
-        body += "\n\nA: " + response_json['answer1']
-        body += "\n\n<details><summary>...</summary>"
-        body += "\n\n_Explanation: " + response_json['explanation1'] + "_"
-        body += "\n\n</details>"
-        body += "\n\nB: " + response_json['answer2']
-        body += "\n\n<details><summary>...</summary>"
-        body += "\n\n_Explanation: " + response_json['explanation2'] + "_"
-        body += "\n\n</details>"
-        body += "\n\nC: " + response_json['answer3']
-        body += "\n\n<details><summary>...</summary>"
-        body += "\n\n_Explanation: " + response_json['explanation3'] + "_"
-        body += "\n\n</details>"
+        body = ("**" + response_json['question'] + "**"
+        "\n\n(Context)[" + source_file + "]" +
+        "\n\nA: " + response_json['answer1'] +
+        "\n\n<details><summary>...</summary>" +
+        "\n\n_Explanation: " + response_json['explanation1'] + "_" +
+        "\n\n</details>" +
+        "\n\nB: " + response_json['answer2'] +
+        "\n\n<details><summary>...</summary>" +
+        "\n\n_Explanation: " + response_json['explanation2'] + "_" +
+        "\n\n</details>" +
+        "\n\nC: " + response_json['answer3'] +
+        "\n\n<details><summary>...</summary>" +
+        "\n\n_Explanation: " + response_json['explanation3'] + "_" +
+        "\n\n</details>")
 
         print(f"::set-output name=title::{title}")
         print(f"::set-output name=body::{body}")
