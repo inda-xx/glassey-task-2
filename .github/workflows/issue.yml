@@ -6,7 +6,7 @@ on:
     types: [opened]
 
 jobs:
-  List-Java-Files:
+  Generate-QLC:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.title == 'AMA' || github.event.issue.title == 'ama' }}
     
