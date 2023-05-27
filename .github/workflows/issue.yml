@@ -1,12 +1,12 @@
 name: Issue Opened
-run-name: Detect when `AMA` issue is opened
+run-name: Detect when issue is opened and list files
 
 on:
   issues:
     types: [opened]
 
 jobs:
-  runs-script:
+  List-Java-Files:
     runs-on: ubuntu-latest
     
     steps:
