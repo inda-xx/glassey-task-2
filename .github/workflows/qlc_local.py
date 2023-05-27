@@ -30,7 +30,7 @@ def main(key, files):
 
         # Open issue on the repository with the question
         title = "🤖 Question about code!"
-        body = "**A**\\n<h1>B</h1>\\n<strong>C</strong>"
+        body = "<h1>B</h1>"
 
         print(f"::set-output name=title::{title}")
         print(f"::set-output name=body::{body}")
