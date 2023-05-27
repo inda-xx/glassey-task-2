@@ -30,7 +30,20 @@ def main(key, files):
 
         # Open issue on the repository with the question
         title = "🤖 Question about code!"
-        body = "**A** <h1>B</h1> <h2>C</h2>"
+        body = ("**" + response_json['question'] + "**" +
+            "(Context)[" + source_file + "]" + "<br />" +
+            "A: " + response_json['answer1'] + "<br />" +
+            "<details><summary>...</summary>" +
+            "_Explanation: " + response_json['explanation1'] + "_" +
+            "</details>" +
+            "B: " + response_json['answer2'] + "<br />" +
+            "<details><summary>...</summary>" +
+            "_Explanation: " + response_json['explanation2'] + "_" +
+            "</details>" +
+            "C: " + response_json['answer3'] + "<br />" +
+            "<details><summary>...</summary>" +
+            "_Explanation: " + response_json['explanation3'] + "_" +
+            "</details>")
 
         print(f"::set-output name=title::{title}")
         print(f"::set-output name=body::{body}")
