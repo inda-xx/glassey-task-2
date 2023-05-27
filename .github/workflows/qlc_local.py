@@ -30,9 +30,8 @@ def main(key, files):
 
         # Open issue on the repository with the question
         title = "🤖 Answer this question about your code!"
-        body = ("** Considering [`/" + source_file + "`](../blob/master/" + source_file + ") **" +
-            "**" + response_json['question'] + "**" +
-            "(Context)[" + source_file + "]" + "<br />" +
+        body = ("**Considering [`/" + source_file + "`](../blob/master/" + source_file + ")**" + <br /> +
+            "**" + response_json['question'] + "**" + "<br />" +
             "A: " + response_json['answer1'] + "<br />" +
             "<details><summary>...</summary>" +
             "_Explanation: " + response_json['explanation1'] + "_" +
