@@ -27,7 +27,7 @@ jobs:
     - name: Generate question
       id: generate_qn
       run: |
-        python .github/workflows/qlc_local.py ${{ steps.list_files.outputs.files }} ${{ secrets.OPENAI_TOKEN }}
+        python .github/workflows/qlc_local.py ${{ secrets.OPENAI_TOKEN }} ${{ steps.list_files.outputs.files }}
     
     - name: Update issue
       env:
