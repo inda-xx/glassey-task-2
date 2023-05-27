@@ -1,5 +1,5 @@
-name: Issue Opened
-run-name: Detect when issue is opened and list files
+name: Generate QLC
+run-name: Generates a question about learner code
 
 on:
   issues:
