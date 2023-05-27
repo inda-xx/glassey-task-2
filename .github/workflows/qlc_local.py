@@ -31,20 +31,19 @@ def main(key, files):
         # Open issue on the repository with the question
         title = "🤖 Question about code!"
         body = ("**" + response_json['question'] + "**" +
-            "\n(Context)[" + source_file + "]" +
-            "\nA: " + response_json['answer1'] +
-            "\n<details><summary>...</summary>" +
-            "\n_Explanation: " + response_json['explanation1'] + "_" +
-            "\n</details>" +
-            "\nB: " + response_json['answer2'] +
-            "\n<details><summary>...</summary>" +
-            "\n_Explanation: " + response_json['explanation2'] + "_" +
-            "\n</details>" +
-            "\nC: " + response_json['answer3'] +
-            "\n<details><summary>...</summary>" +
-            "\n_Explanation: " + response_json['explanation3'] + "_" +
-            "\n</details>")
-        body = "**Lorem ipsum dolor** sit amet,\nconsectetur adipiscing elit,\nsed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            "\\n(Context)[" + source_file + "]" +
+            "\\nA: " + response_json['answer1'] +
+            "\\n<details><summary>...</summary>" +
+            "\\n_Explanation: " + response_json['explanation1'] + "_" +
+            "\\n</details>" +
+            "\\nB: " + response_json['answer2'] +
+            "\\n<details><summary>...</summary>" +
+            "\\n_Explanation: " + response_json['explanation2'] + "_" +
+            "\\n</details>" +
+            "\\nC: " + response_json['answer3'] +
+            "\\n<details><summary>...</summary>" +
+            "\\n_Explanation: " + response_json['explanation3'] + "_" +
+            "\\n</details>")
 
         print(f"::set-output name=title::{title}")
         print(f"::set-output name=body::{body}")
