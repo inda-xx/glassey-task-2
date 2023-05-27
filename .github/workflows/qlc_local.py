@@ -6,6 +6,7 @@ import json
 def main(files, key):
     openai.api_key = key
     for source_file in files:
+        source_file = source_file.strip("./")
         source_file = source_file.strip()
         with open(source_file, 'r') as file:
             source_code = file.read()
