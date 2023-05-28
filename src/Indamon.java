@@ -5,6 +5,14 @@ class Indamon {
     int attack;
     int defense;
     boolean fainted;
+    
+    void attack(Indamon opponent) {
+        opponent.hp = opponent.hp - (this.attack - opponent.defense);
+        if (opponent.hp <= 0) {
+            opponent.hp = 0;
+            opponent.fainted = true;
+        }
+    }
 
     public static void main(String[] args) {
         // create a new "Indamon" object
