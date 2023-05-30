@@ -36,11 +36,12 @@ jobs:
 
             commentContent = 'Sorry, I did not understand that, I only can respond to AAA or BBB';
 
-            // Create a comment with the message
+            // Update issue body
             const issueNumber = context.issue.number;
-            github.issues.createComment({
-              issue_number: issueNumber,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: commentContent,
+            console.log(issueNumber);
+            github.issues.update({
+                issue_number: issueNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: 'Sorry, I did not understand that, I only can respond to AAA or BBB',
             });
