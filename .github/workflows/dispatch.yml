@@ -13,9 +13,15 @@ jobs:
         with:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
-            const issueTitle = context.issue.title;
-            console.log(issueTitle);
-            let commentContent = '';
+            const issueNumber = context.issue.number;
+            const issue = await github.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+            });
+
+            const issueTitle = issue.data.title;
+            let issueBody = issue.data.body;
 
             if (['Pass', 'Komp', 'Fail'].includes(issueTitle)) {
               console.log('Ignoring issue...');
@@ -39,11 +45,10 @@ jobs:
             commentContent = 'Sorry, I did not understand that, I only can respond to AAA or BBB';
 
             // Update issue body
-            const issueNumber = context.issue.number;
-            console.log(issueNumber);
-            await github.issues.update({
-                issue_number: issueNumber,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: 'Sorry, I did not understand that, I only can respond to AAA or BBB',
+            issueBody += '\n\nSorry, I did not understand that, I only can respond to AAA or BBB';
+            github.issues.update({
+              issue_number: issueNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: issueBody,
             });
