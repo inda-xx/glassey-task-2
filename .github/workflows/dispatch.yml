@@ -43,7 +43,7 @@ jobs:
             }
           
             // Update issue body
-            issueBody += '\n\nSorry, I did not understand that, I only can respond to AAA or BBB';
+            issueBody = '\n\nSorry, I did not understand that, I only can respond to AAA or BBB';
             github.rest.issues.update({
               issue_number: issueNumber,
               owner: context.repo.owner,
