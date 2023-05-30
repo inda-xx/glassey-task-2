@@ -1,0 +1,46 @@
+name: Issue Dispatcher
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  dispatch-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Handle issue
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const issueTitle = context.issue.title;
+            let commentContent = '';
+
+            if (['Pass', 'Komp', 'Fail'].includes(issueTitle)) {
+              console.log('Ignoring issue...');
+              return;
+            }
+
+            if (issueTitle === 'AAA') {
+              // Execute workflowAAA
+              // This could be a call to the GitHub API to dispatch an event that triggers the workflow
+              console.log('Executing workflowAAA...');
+              return;
+            }
+
+            if (issueTitle === 'BBB') {
+              // Execute workflowBBB
+              // This could be a call to the GitHub API to dispatch an event that triggers the workflow
+              console.log('Executing workflowBBB...');
+              return;
+            }
+
+            commentContent = 'Sorry, I did not understand that, I only can respond to AAA or BBB';
+
+            // Create a comment with the message
+            const issueNumber = context.issue.number;
+            github.issues.createComment({
+              issue_number: issueNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: commentContent,
+            });
