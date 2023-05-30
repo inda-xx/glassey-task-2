@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Handle issue
         uses: actions/github-script@v5
+        env:
+            API_TOKEN: ${{ secrets.API_TOKEN }}
         with:
           script: |
             const issueTitle = context.issue.title;
