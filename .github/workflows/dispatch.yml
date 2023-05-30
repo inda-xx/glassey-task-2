@@ -14,6 +14,7 @@ jobs:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
             const issueTitle = context.issue.title;
+            console.log(issueTitle);
             let commentContent = '';
 
             if (['Pass', 'Komp', 'Fail'].includes(issueTitle)) {
