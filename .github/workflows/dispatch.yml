@@ -14,39 +14,37 @@ jobs:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
             const issueNumber = context.issue.number;
-            const issue = await github.issues.get({
+            const issue = await github.rest.issues.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issueNumber,
             });
-
+        
             const issueTitle = issue.data.title;
             let issueBody = issue.data.body;
-
+          
             if (['Pass', 'Komp', 'Fail'].includes(issueTitle)) {
               console.log('Ignoring issue...');
               return;
             }
-
+          
             if (issueTitle === 'AAA') {
               // Execute workflowAAA
               // This could be a call to the GitHub API to dispatch an event that triggers the workflow
               console.log('Executing workflowAAA...');
               return;
             }
-
+          
             if (issueTitle === 'BBB') {
               // Execute workflowBBB
               // This could be a call to the GitHub API to dispatch an event that triggers the workflow
               console.log('Executing workflowBBB...');
               return;
             }
-
-            commentContent = 'Sorry, I did not understand that, I only can respond to AAA or BBB';
-
+          
             // Update issue body
             issueBody += '\n\nSorry, I did not understand that, I only can respond to AAA or BBB';
-            github.issues.update({
+            github.rest.issues.update({
               issue_number: issueNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
