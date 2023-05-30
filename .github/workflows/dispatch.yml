@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Handle issue
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
@@ -40,7 +40,7 @@ jobs:
             // Update issue body
             const issueNumber = context.issue.number;
             console.log(issueNumber);
-            github.issues.update({
+            await github.issues.update({
                 issue_number: issueNumber,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
