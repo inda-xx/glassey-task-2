@@ -47,25 +47,21 @@ jobs:
       - name: Execute handler
         id: execute-handler
         if: steps.parse-issue.outputs.result != 'none'
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-          run: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-
-            if [[ "${{ steps.parse-issue.outputs.result }}" == 'ama' ]]; then
-              python .github/workflows/handle_ama.py
-            elif [[ "${{ steps.parse-issue.outputs.result }}" == 'hint' ]]; then
-              python .github/workflows/handle_hint.py
-            elif [[ "${{ steps.parse-issue.outputs.result }}" == 'mend' ]]; then
-              python .github/workflows/handle_mend.py
-            elif [[ "${{ steps.parse-issue.outputs.result }}" == 'more' ]]; then
-              python .github/workflows/handle_more.py
-            elif [[ "${{ steps.parse-issue.outputs.result }}" == 'rate' ]]; then
-              python .github/workflows/handle_rate.py
-            fi
+          if [[ "${{ steps.parse-issue.outputs.result }}" == 'ama' ]]; then
+            python .github/workflows/handle_ama.py
+          elif [[ "${{ steps.parse-issue.outputs.result }}" == 'hint' ]]; then
+            python .github/workflows/handle_hint.py
+          elif [[ "${{ steps.parse-issue.outputs.result }}" == 'mend' ]]; then
+            python .github/workflows/handle_mend.py
+          elif [[ "${{ steps.parse-issue.outputs.result }}" == 'more' ]]; then
+            python .github/workflows/handle_more.py
+          elif [[ "${{ steps.parse-issue.outputs.result }}" == 'rate' ]]; then
+            python .github/workflows/handle_rate.py
+          fi
       
       - name: Update issue
         id: update-issue
@@ -74,6 +70,8 @@ jobs:
         with:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
+              const issueNumber = context.payload.issue.number;
+
               // Update original issue
               github.rest.issues.update({
                 issue_number: issueNumber,
