@@ -9,25 +9,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Parse issue title
+        id: parse-issue
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
             const issueNumber = context.payload.issue.number;
             const issueTitle = context.payload.issue.title.toLowerCase();
+            let result = 'none';
 
             if (['pass', 'komp', 'fail'].includes(issueTitle)) {
               // Looks like a grading issue, ignore
               console.log('Ignoring grading issue...');
-              return;
-            }
-
-            if (['ama', 'hint', 'mend', 'rate', 'more', 'lang'].includes(issueTitle)) {
+            } else if (['ama', 'hint', 'mend', 'rate', 'more'].includes(issueTitle)) {
               // Looks like a task for Open AI / GPT-4
-              return issueTitle;
-            }
-
-            if(issueTitle === 'help') {
+              result = issueTitle;
+            } else if(issueTitle === 'help') {
               // Provide the help options
               const issueBody = `Hej! Here's how I work. Open a new issue with a title that matches one of the following commands:
                 \n\n - \`AMA\` (ask me anything): I will ask you a random question about your code
@@ -35,9 +32,7 @@ jobs:
                 \n - \`Mend X.java\`: I will give you code quality tips for the given Java file
                 \n - \`Rate\`: I will try to give a soft grade decision based on the task and code in the repo
                 \n - \`More\`: I will invent a new exercise based on the current task
-                \n - \`Lang X\`: I will rewrite the task for language X
-                \n\n I'll try my best to respond, but be patient as I am a bit slow 🤖
-              `;
+                \n\n I'll try my best to respond, but be patient as I am a bit slow 🤖`;
               
               // Update original help issue
               github.rest.issues.update({
@@ -47,6 +42,48 @@ jobs:
                 body: issueBody,
               });
             }
+            return result;
+      
+      - name: Execute handler
+        id: execute-handler
+        if: steps.parse-issue.outputs.result != 'none'
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+          run: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+
+            if [[ "${{ steps.parse-issue.outputs.result }}" == 'ama' ]]; then
+              python .github/workflows/handle_ama.py
+            elif [[ "${{ steps.parse-issue.outputs.result }}" == 'hint' ]]; then
+              python .github/workflows/handle_hint.py
+            elif [[ "${{ steps.parse-issue.outputs.result }}" == 'mend' ]]; then
+              python .github/workflows/handle_mend.py
+            elif [[ "${{ steps.parse-issue.outputs.result }}" == 'more' ]]; then
+              python .github/workflows/handle_more.py
+            elif [[ "${{ steps.parse-issue.outputs.result }}" == 'rate' ]]; then
+              python .github/workflows/handle_rate.py
+            fi
+      
+      - name: Update issue
+        id: update-issue
+        if: steps.parse-issue.outputs.result != 'none'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.API_TOKEN }}
+          script: |
+              // Update original issue
+              github.rest.issues.update({
+                issue_number: issueNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: steps.execute-handler.outputs.title,
+                body: steps.execute-handler.outputs.body,
+              });
+
+
 
 
         
