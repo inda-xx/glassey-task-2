@@ -37,6 +37,14 @@ jobs:
                 \n\n - \`More\`: I will invent a new exercise based on the current task
                 \n\n - \`Lang X\`: I will rewrite the task for language X
               `;
+              
+              // Update original help issue
+              github.rest.issues.update({
+                issue_number: issueNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: issueBody,
+              });
             }
 
 
