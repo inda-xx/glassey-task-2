@@ -13,8 +13,5 @@ jobs:
         with:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
-            const issueNumber = github.event.issue.number;
-            const issueTitle = github.event.issue.title;
-
-            console.log(`Issue number: ${issueNumber}`);
-            console.log(`Issue title: ${issueTitle}`);
+            console.log(`Issue title: ${context.issue.title}`);
+            console.log(`Issue number: ${context.issue.number}`);
