@@ -14,36 +14,15 @@ jobs:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
             const issueTitle = github.event.issue.title.toLowerCase();
-          
             if (['pass', 'komp', 'fail'].includes(issueTitle)) {
-              console.log('Ignoring issue...');
+              # Looks like a grading issue, ignore
+              console.log('Ignoring grading issue...');
               return;
             }
-          
-            if (issueTitle === 'ama') {
-              return 'ama';
+            if (['ama', 'hint', 'mend', 'rate', 'more', 'lang'].includes(issueTitle)) {
+              console.log(issueTitle);
+              return;
             }
-          
-            if (issueTitle === 'hint') {}
-              return 'hint';
-            }
-
-            if (issueTitle === 'more') {}
-              return 'more';
-            }
-
-            if (issueTitle === 'rate') {}
-              return 'rate';
-            }
-
-            if (issueTitle === 'mend') {}
-              return 'mend';
-            }
-
-            if (issueTitle === 'lang') {}
-              return 'lang';
-            }
-          
             // Update issue body
             const issueBody = '\n\nSorry, I did not understand that, I only can respond to these commands:
               \n\n - `AMA` (ask me anything): I will ask you a question about your code
