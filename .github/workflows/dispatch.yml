@@ -27,4 +27,17 @@ jobs:
               return issueTitle;
             }
 
+            if(issueTitle === 'help') {
+              // Provide the help options
+              const issueBody = '\n\nSorry, I did not understand that, I only can respond to these commands:
+                \n\n - `AMA` (ask me anything): I will ask you a question about your code
+                \n\n - `Hint X.Y`: I will try to give you a hint about a particular exercise
+                \n\n - `Mend X.java`: I will give you code quality tips for the given Java file
+                \n\n - `Rate`: I will try to give a soft grade decision based on the task and code in the repo
+                \n\n - `More`: I will invent a new exercise based on the current task
+                \n\n - `Lang X`: I will rewrite the task for language X
+              ';
+              }
+
+
         
