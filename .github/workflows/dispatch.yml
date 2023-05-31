@@ -13,5 +13,5 @@ jobs:
         with:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
-            const issueTitle = 'pass';
+            const issueTitle = context.issue.number;
             console.log(issueTitle);
