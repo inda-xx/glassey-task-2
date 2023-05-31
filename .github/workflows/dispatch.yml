@@ -46,9 +46,12 @@ jobs:
               });
             }
             return result;
-      
+  
+  choose-handler:
+    if: steps.parse-issue.outputs.result != 'none'
+    runs-on: ubuntu-latest
+    steps:
       - name: Dispatch to handler
-        if: steps.parse-issue.outputs.result != 'none'
         id: dispatch-handler
         run: |
           python -m pip install --upgrade pip
@@ -67,8 +70,6 @@ jobs:
           fi
       
       - name: Update issue
-        if: steps.parse-issue.outputs.result != 'none'
-        id: update-issue
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.API_TOKEN }}
