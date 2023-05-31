@@ -13,7 +13,7 @@ jobs:
         with:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
-            const issueTitle = context.issue.title.toLowerCase();
+            const issueTitle = 'pass';
             console.log(issueTitle);
 
             if (['pass', 'komp', 'fail'].includes(issueTitle)) {
