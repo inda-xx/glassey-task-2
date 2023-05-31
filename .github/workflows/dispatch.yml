@@ -17,18 +17,18 @@ jobs:
             const issueTitle = context.payload.issue.title;
 
             if (['pass', 'komp', 'fail'].includes(issueTitle)) {
-              # Looks like a grading issue, ignore
+              // Looks like a grading issue, ignore
               console.log('Ignoring grading issue...');
               return;
             }
 
             if (['ama', 'hint', 'mend', 'rate', 'more', 'lang'].includes(issueTitle)) {
-              # Looks like a task for Open AI / GPT-4
+              // Looks like a task for Open AI / GPT-4
               return issueTitle;
             }
 
             if(issueTitle === 'help') {
-              # Provide the help options
+              // Provide the help options
               const issueBody = '\n\nSorry, I did not understand that, I only can respond to these commands:
                 \n\n - `AMA` (ask me anything): I will ask you a question about your code
                 \n\n - `Hint X.Y`: I will try to give you a hint about a particular exercise
