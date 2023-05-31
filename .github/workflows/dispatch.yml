@@ -49,7 +49,7 @@ jobs:
       
       - name: Dispatch to handler
         id: dispatch-handler
-        if: ${{ steps.parse-issue.outputs.result != 'none' }}
+        if: steps.parse-issue.outputs.result != 'none'
         run: |
           python -m pip install --upgrade pip
           pip install -r .github/workflows/requirements.txt
@@ -68,7 +68,7 @@ jobs:
       
       - name: Update issue
         id: update-issue
-        if: ${{ steps.parse-issue.outputs.result != 'none' }}
+        if: steps.parse-issue.outputs.result != 'none'
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.API_TOKEN }}
