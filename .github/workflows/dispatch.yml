@@ -22,4 +22,9 @@ jobs:
               return;
             }
 
+            if (['ama', 'hint', 'mend', 'rate', 'more', 'lang'].includes(issueTitle)) {
+              // Looks like a task for Open AI / GPT-4
+              return issueTitle;
+            }
+
         
