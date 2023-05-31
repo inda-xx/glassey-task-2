@@ -14,7 +14,7 @@ jobs:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
             const issueNumber = context.payload.issue.number;
-            const issueTitle = context.payload.issue.title;
+            const issueTitle = context.payload.issue.title.toLowerCase();
 
             if (['pass', 'komp', 'fail'].includes(issueTitle)) {
               // Looks like a grading issue, ignore
