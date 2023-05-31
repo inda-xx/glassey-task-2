@@ -1,4 +1,4 @@
-name: Issue Dispatcher
+name: Dispatch
 
 on:
   issues:
@@ -8,44 +8,53 @@ jobs:
   dispatch-issue:
     runs-on: ubuntu-latest
     steps:
-      - name: Handle issue
+      - name: Parse issue title
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
-            const issueNumber = context.issue.number;
-            const issue = await github.rest.issues.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issueNumber,
-            });
-        
-            const issueTitle = issue.data.title;
-            let issueBody = issue.data.body;
+            const issueTitle = github.event.issue.title.toLowerCase();
           
-            if (['Pass', 'Komp', 'Fail'].includes(issueTitle)) {
+            if (['pass', 'komp', 'fail'].includes(issueTitle)) {
               console.log('Ignoring issue...');
               return;
             }
           
-            if (issueTitle === 'AAA') {
-              // Execute workflowAAA
-              // This could be a call to the GitHub API to dispatch an event that triggers the workflow
-              console.log('Executing workflowAAA...');
-              return;
+            if (issueTitle === 'ama') {
+              return 'ama';
             }
           
-            if (issueTitle === 'BBB') {
-              // Execute workflowBBB
-              // This could be a call to the GitHub API to dispatch an event that triggers the workflow
-              console.log('Executing workflowBBB...');
-              return;
+            if (issueTitle === 'hint') {}
+              return 'hint';
+            }
+
+            if (issueTitle === 'more') {}
+              return 'more';
+            }
+
+            if (issueTitle === 'rate') {}
+              return 'rate';
+            }
+
+            if (issueTitle === 'mend') {}
+              return 'mend';
+            }
+
+            if (issueTitle === 'lang') {}
+              return 'lang';
             }
           
             // Update issue body
-            issueBody = '\n\nSorry, I did not understand that, I only can respond to AAA or BBB';
+            const issueBody = '\n\nSorry, I did not understand that, I only can respond to these commands:
+              \n\n - `AMA` (ask me anything): I will ask you a question about your code
+              \n\n - `Hint X.Y`: I will try to give you a hint about a particular exercise
+              \n\n - `Mend X.java`: I will give you code quality tips for the given Java file
+              \n\n - `Rate`: I will try to give a soft grade decision based on the task and code in the repo
+              \n\n - `More`: I will invent a new exercise based on the current task
+              \n\n - `Lang X`: I will rewrite the task for language X
+            ';
             github.rest.issues.update({
-              issue_number: issueNumber,
+              issue_number: github.event.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: issueBody,
