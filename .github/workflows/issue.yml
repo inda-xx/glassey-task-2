@@ -34,8 +34,9 @@ jobs:
       with:
         github-token: ${{ secrets.API_TOKEN }}
         script: |
+          const issueNumber = context.payload.issue.number;
           github.rest.issues.update({
-            issue_number: "${{ context.payload.issue.number }}",
+            issue_number: issueNumber,
             owner: context.repo.owner,
             repo: context.repo.repo,
             title: "${{ steps.generate_qn.outputs.title }}"
