@@ -34,5 +34,6 @@ jobs:
       with:
         github-token: ${{ secrets.API_TOKEN }}
         script: |
-          console.log(github.event.issue.title);
+          console.log(${{ github.event.issue.title }});
+          console.log(${{ github.event.issue.number }});
           
