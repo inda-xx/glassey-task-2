@@ -34,9 +34,10 @@ jobs:
       with:
         github-token: ${{ secrets.API_TOKEN }}
         script: |
-          const issueNumber = context.payload.issue.number;
+          console.log(github.event.issue.number);
+          console.log(github.event.issue.title);
           github.rest.issues.update({
-            issue_number: issueNumber,
+            issue_number: github.event.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
             title: "test title"
