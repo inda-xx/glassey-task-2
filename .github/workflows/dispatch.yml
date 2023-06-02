@@ -46,7 +46,7 @@ jobs:
   dispatch-to-handler:
     needs: [parse-issue-title]
     runs-on: ubuntu-latest
-    if: needs.parse-issue-title.outputs.result..replace(/\"/g, "") != 'none'
+    if: needs.parse-issue-title.outputs.result.replace(/\"/g, "") != 'none'
 
     steps:
       - name: Checkout repository
