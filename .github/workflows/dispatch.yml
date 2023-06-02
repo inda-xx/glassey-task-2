@@ -8,7 +8,7 @@ jobs:
   parse-issue-title:
     runs-on: ubuntu-latest
     outputs:
-      result: '${{ steps.parse-issue-title.outputs.result }}'
+      result: ${{ steps.parse-issue-title.outputs.result }}
     steps:
       - name: Parse issue title
         uses: actions/github-script@v6
@@ -45,7 +45,7 @@ jobs:
   dispatch-to-handler:
     needs: [parse-issue-title]
     runs-on: ubuntu-latest
-    if: needs.parse-issue-title.outputs.result != 'none'
+    if: ${{ needs.parse-issue-title.outputs.result }} != 'none'
 
     steps:
       - name: Checkout repository
