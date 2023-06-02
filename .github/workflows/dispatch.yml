@@ -50,6 +50,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          script: |
+            console.log(toJSON(needs));
+        
         
       - name: Setup environment and execute handler
         id: dispatch-handler
