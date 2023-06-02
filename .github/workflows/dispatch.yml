@@ -69,7 +69,7 @@ jobs:
           elif [[ "${{ needs.parse-issue-title.outputs.result }}" == 'mend' ]]; then
             python .github/workflows/handle_mend.py
           elif [[ "${{ needs.parse-issue-title.outputs.result }}" == 'more' ]]; then
-            python .github/workflows/handle_more.py
+            python .github/workflows/handle_more.py ${{ secrets.OPENAI_TOKEN }} README.md
           elif [[ "${{ needs.parse-issue-title.outputs.result }}" == 'rate' ]]; then
             python .github/workflows/handle_rate.py
           fi
