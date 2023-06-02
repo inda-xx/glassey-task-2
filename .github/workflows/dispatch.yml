@@ -11,7 +11,7 @@ jobs:
       result: ${{ steps.parse-title.outputs.result }}
     steps:
       - name: Parse issue title
-        id: parse_title
+        id: parse-title
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.API_TOKEN }}
