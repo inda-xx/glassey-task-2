@@ -8,9 +8,10 @@ jobs:
   parse-issue-title:
     runs-on: ubuntu-latest
     outputs:
-      result: ${{ steps.parse-issue-title.outputs.result }}
+      result: ${{ steps.parse-title.outputs.result }}
     steps:
       - name: Parse issue title
+        id: parse_title
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.API_TOKEN }}
