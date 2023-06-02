@@ -25,7 +25,7 @@ def main(key, file_path):
     exercise = response.choices[0]['message']['content']
     response_json = json.loads(exercise)
     
-    print(json.stringify(response_json))
+    print(response_json.stringify())
 
     # Set the issue title and body
     title = "🤖 Here is a bonus exercise for you!"
