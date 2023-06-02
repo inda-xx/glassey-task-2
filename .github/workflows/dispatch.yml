@@ -43,7 +43,7 @@ jobs:
             return result;
   
   dispatch-to-handler:
-    if: ${{ needs.parse-issue-title.outputs.result != 'none' }}
+    if: needs.parse-issue-title.outputs.result != 'none'
     runs-on: ubuntu-latest
     needs: parse-issue-title
     steps:
