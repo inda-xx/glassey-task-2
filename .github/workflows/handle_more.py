@@ -23,7 +23,7 @@ def main(key, file_path):
     
     # Extract the exercise from the response
     exercise = response.choices[0]['message']['content']
-    response_json = json.loads(exercise)
+    response_json = json.load(exercise)
 
     print(json.dumps(response_json))
 
