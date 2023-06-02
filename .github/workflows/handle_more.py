@@ -1,6 +1,7 @@
 import os
 import sys
 import openai
+import codecs
 
 def main(key, file_path):
     openai.api_key = key
@@ -19,9 +20,11 @@ def main(key, file_path):
         ]
     )
     
+    exercise = response.choices[0]['message']['content']
+    
     # Set the issue title and body
     title = "🤖 Here is a bonus exercise for you!"
-    body = response.choices[0]['message']['content'].encode("unicode_escape").decode('utf-8')
+    body = codecs.escape_decode(bytes(exercise, "utf-8"))[0].decode("utf-8")
 
     print(f"::set-output name=title::{title}")
     print(f"::set-output name=body::{body}")
