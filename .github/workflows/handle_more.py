@@ -30,4 +30,4 @@ def main(key, file_path):
     print(f"::set-output name=body::{body}")
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2:])
+    main(sys.argv[1], sys.argv[2])
