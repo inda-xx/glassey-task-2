@@ -1,6 +1,7 @@
 import os
 import sys
 import openai
+import json
 
 def main(key, file_path):
     openai.api_key = key
@@ -15,16 +16,17 @@ def main(key, file_path):
         messages=[
             {"role": "system", "content": "You are a teacher that wants to help a student by extending their programming task with a fun bonus exercise. Here is their overall task:"},
             {"role": "assistant", "content": readme},
-            {"role": "assistant", "content": "Your response should be a complete exercise in markdown format."},
+            {"role": "assistant", "content": "Your response should be a complete exercise in markdown format as a value in a json object with the key 'task'."},
         ]
     )
     
     # Extract the exercise from the response
     exercise = response.choices[0]['message']['content']
+    response_json = json.loads(exercise)
 
     # Set the issue title and body
     title = "🤖 Here is a bonus exercise for you!"
-    body = response.choices[0]['message']['content']
+    body = response_json['task']
 
     print(f"::set-output name=title::{title}")
     print(f"::set-output name=body::{body}")
