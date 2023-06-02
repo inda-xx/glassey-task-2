@@ -43,9 +43,9 @@ jobs:
             return result;
   
   dispatch-to-handler:
+    if: ${{ needs.parse-issue-title.outputs.result != 'none' }}
     runs-on: ubuntu-latest
     needs: parse-issue-title
-    if: ${{ needs.parse-issue-title.outputs.result != 'none' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
