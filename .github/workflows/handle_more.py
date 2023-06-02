@@ -2,6 +2,7 @@ import os
 import sys
 import openai
 import json
+from io import StringIO
 
 def main(key, file_path):
     openai.api_key = key
@@ -22,7 +23,7 @@ def main(key, file_path):
     )
     
     # Extract the exercise from the response
-    exercise = response.choices[0]['message']['content']
+    exercise = StringIO(response.choices[0]['message']['content'])
     response_json = json.load(exercise)
 
     print(json.dumps(response_json))
