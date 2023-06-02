@@ -16,7 +16,7 @@ def main(key, file_path):
         messages=[
             {"role": "system", "content": "You are a teacher that wants to help a student by extending their programming task with a fun bonus exercise. Here is their overall task:"},
             {"role": "assistant", "content": readme},
-            {"role": "assistant", "content": "Provide the next exercise in markdown format."},
+            {"role": "assistant", "content": "Provide the next exercise in markdown format, note that you should avoid \n and use <br \> for new lines."},
             {"role": "assistant", "content": "Return the exercise as a JSON object with one key called 'exercise'."},
         ]
     )
