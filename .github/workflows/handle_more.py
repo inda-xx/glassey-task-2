@@ -16,7 +16,8 @@ def main(key, file_path):
         messages=[
             {"role": "system", "content": "You are a teacher that wants to help a student by extending their programming task with a fun bonus exercise. Here is their overall task:"},
             {"role": "assistant", "content": readme},
-            {"role": "assistant", "content": "Your response should be a complete exercise in markdown format as a value in a json object with the key 'task'."},
+            {"role": "assistant", "content": "Provide the next exercise in markdown format."},
+            {"role": "assistant", "content": "Return the exercise as a JSON object with one key called 'exercise'."},
         ]
     )
     
@@ -26,7 +27,7 @@ def main(key, file_path):
 
     # Set the issue title and body
     title = "🤖 Here is a bonus exercise for you!"
-    body = response_json['task']
+    body = response_json['exercise']
 
     print(f"::set-output name=title::{title}")
     print(f"::set-output name=body::{body}")
