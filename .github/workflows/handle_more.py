@@ -19,12 +19,9 @@ def main(key, file_path):
         ]
     )
     
-    print(response.choices[0]['message']['content'])
-    print(response.choices[0]['message']['content'].encode("unicode_escape"))
-    
     # Set the issue title and body
     title = "🤖 Here is a bonus exercise for you!"
-    body = "blah"
+    body = response.choices[0]['message']['content'].encode("unicode_escape")
 
     print(f"::set-output name=title::{title}")
     print(f"::set-output name=body::{body}")
