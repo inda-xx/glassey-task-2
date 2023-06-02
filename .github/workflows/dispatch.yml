@@ -43,7 +43,7 @@ jobs:
             return result;
   
   dispatch-to-handler:
-    needs: parse-issue-title
+    needs: [parse-issue-title]
     runs-on: ubuntu-latest
     if: needs.parse-issue-title.outputs.result != 'none'
 
