@@ -42,6 +42,7 @@ jobs:
               });
             }
             return result;
+          result-encoding: string
   
   dispatch-to-handler:
     needs: [parse-issue-title]
