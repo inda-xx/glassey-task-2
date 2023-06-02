@@ -8,7 +8,7 @@ jobs:
   parse-issue-title:
     runs-on: ubuntu-latest
     outputs:
-      result: ${{ steps.parse-title.outputs.result }}
+      result: steps.parse-title.outputs.result
     steps:
       - name: Parse issue title
         id: parse-title
