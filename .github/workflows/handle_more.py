@@ -23,11 +23,9 @@ def main(key, file_path):
     
     response_json = json.loads(response.choices[0]['message']['content'])
     
-    print(response_json)
-    
     # Set the issue title and body
     title = "🤖 Here is a bonus exercise for you!"
-    body = response_json
+    body = response_json['exercise'].replace('\n', ' \n')
 
     print(f"::set-output name=title::{title}")
     print(f"::set-output name=body::{body}")
