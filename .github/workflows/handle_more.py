@@ -27,7 +27,7 @@ def main(key, file_path):
     
     # Set the issue title and body
     title = "🤖 Here is a bonus exercise for you!"
-    body = response_json['exercise']
+    body = response_json
 
     print(f"::set-output name=title::{title}")
     print(f"::set-output name=body::{body}")
