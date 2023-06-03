@@ -1,7 +1,7 @@
 import os
 import sys
 import openai
-import codecs
+import json
 
 def main(key, file_path):
     openai.api_key = key
