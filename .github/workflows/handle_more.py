@@ -2,6 +2,7 @@ import os
 import sys
 import openai
 import json
+import markdown
 
 def main(key, file_path):
     openai.api_key = key
@@ -14,20 +15,22 @@ def main(key, file_path):
     response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=[
-            {"role": "system", "content": "You are a teacher that wants to help a student by extending their programming task with a fun bonus exercise. Here is their overall task:"},
+            {"role": "system", "content": "You are a teacher that wants to help a student by extending their programming task with a new exercise. Here is their overall task:"},
             {"role": "assistant", "content": readme},
-            {"role": "assistant", "content": "Provide the next exercise."},
-            {"role": "assistant", "content": "Format as a json object with the key 'exercise' "},
+            {"role": "assistant", "content": "Format the exercise using markdown."},
+            {"role": "assistant", "content": "Provide the next exercise:"},
         ]
     )
     
-    response_json = json.loads(response.choices[0]['message']['content'])
-    print(json.dumps(response_json['exercise']).replace('\n', '\\n'))
+    # response_json = json.loads(response.choices[0]['message']['content'])
+    # print(json.dumps(response_json['exercise']).replace('\n', '\\n'))
+    
+    response_html = markdown.markdown(response.choices[0]['message']['content'], extensions=['nl2br'])
     
     # Set the issue title and body
     title = "🤖 Here is a bonus exercise for you!"
-    body = response_json['exercise'].replace('\n', '\\n')
-
+    body = response_html
+    
     print(f"::set-output name=title::{title}")
     print(f"::set-output name=body::{body}")
 
