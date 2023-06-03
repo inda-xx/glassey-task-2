@@ -26,6 +26,7 @@ def main(key, file_path):
     # print(json.dumps(response_json['exercise']).replace('\n', '\\n'))
     
     response_html = markdown.markdown(response.choices[0]['message']['content'], extensions=['nl2br'])
+    print(response_html)
     
     # Set the issue title and body
     title = "🤖 Here is a bonus exercise for you!"
