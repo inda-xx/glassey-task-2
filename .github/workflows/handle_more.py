@@ -1,8 +1,6 @@
 import os
 import sys
 import openai
-import json
-import markdown
 
 def main(key, file_path):
     openai.api_key = key
@@ -23,20 +21,12 @@ def main(key, file_path):
     )
     
     response_str = response.choices[0]['message']['content']
-    print(response_str.encode('unicode_escape').decode())
-    print()
-    
-    response_json = json.loads(response.choices[0]['message']['content'])
-    print(json.dumps(response_json.encode('unicode_escape').decode()))
-    print()
-    
-    response_html = markdown.markdown(response.choices[0]['message']['content'], extensions=['nl2br'])
-    print(response_html.encode('unicode_escape').decode())
-    print()
+    response_str_encoded = response_str.encode('unicode_escape').decode()
+    print(response_str_encoded)
     
     # Set the issue title and body
     title = "🤖 Here is a bonus exercise for you!"
-    body = response_html
+    body = response_str_encoded
     
     print(f"::set-output name=title::{title}")
     print(f"::set-output name=body::{body}")
