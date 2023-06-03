@@ -17,15 +17,17 @@ def main(key, file_path):
             {"role": "system", "content": "You are a teacher that wants to help a student by extending their programming task with a fun bonus exercise. Here is their overall task:"},
             {"role": "assistant", "content": readme},
             {"role": "assistant", "content": "Provide the next exercise."},
+            {"role": "assistant", "content": "Format as a json object with the key 'exercise' "},
         ]
     )
     
-    exercise = response.choices[0]['message']['content']
-    print(exercise)
+    response_json = json.loads(response.choices[0]['message']['content'])
+    
+    print(response_json['exercise'])
     
     # Set the issue title and body
     title = "🤖 Here is a bonus exercise for you!"
-    body = exercise
+    body = response_json['exercise']
 
     print(f"::set-output name=title::{title}")
     print(f"::set-output name=body::{body}")
