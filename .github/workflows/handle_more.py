@@ -24,7 +24,7 @@ def main(key, file_path):
                 {"role": "assistant", "content": "Format the exercise using markdown."},
             ]
         )
-        print(response.choices[0]['message']['content'])
+        print(repr(response.choices[0]['message']['content']))
     
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
