@@ -67,9 +67,9 @@ jobs:
             python .github/workflows/handle_mend.py
           elif [[ "${{ needs.parse-issue-title.outputs.result }}" == 'more' ]]; then
             echo "title=🤖 Here is a bonus exercise for you!" >> "$GITHUB_ENV"
-            echo "body<<$EOF" >> "$GITHUB_ENV"
-            python .github/workflows/handle_more.py ${{ secrets.OPENAI_TOKEN }} README.md >> "$GITHUB_ENV"
-            echo "$EOF" >> "$GITHUB_ENV"
+            # echo "body<<$EOF" >> "$GITHUB_ENV"
+            # python .github/workflows/handle_more.py ${{ secrets.OPENAI_TOKEN }} README.md >> "$GITHUB_ENV"
+            # echo "$EOF" >> "$GITHUB_ENV"
           elif [[ "${{ needs.parse-issue-title.outputs.result }}" == 'rate' ]]; then
             python .github/workflows/handle_rate.py
           fi
@@ -84,5 +84,5 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 title: "${{ env.title }}",
-                body: "${{ env.body }}",
+                body: "test",
               });
