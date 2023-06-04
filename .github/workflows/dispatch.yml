@@ -18,12 +18,18 @@ jobs:
           script: |
             const issueNumber = "${{ github.event.issue.number }}";
             const issueTitle = "${{ github.event.issue.title }}".toLowerCase();
-            let result = "none";
+            const prefixes = ['ama', 'hint', 'mend', 'rate', 'more'];
+            let result = 'none';
 
-            if (['ama', 'hint', 'mend', 'rate', 'more'].includes(issueTitle)) {
-              // Looks like a task for Open AI / GPT-4
-              result = issueTitle;
-            } else if(issueTitle === 'help') {
+            for (const prefix of prefixes) {
+              if (issueTitle.startsWith(prefix)) {
+                // Looks like a task for Open AI / GPT-4
+                result = issueTitle;
+                break;
+              }
+            }
+            
+            if(issueTitle === 'help') {
               // Provide the help options
               const issueBody = `Hej! Here's how I work. Open a new issue with a title that matches one of the following commands:
                 \n\n - \`AMA\` (ask me anything): I will ask you a random question about your code
