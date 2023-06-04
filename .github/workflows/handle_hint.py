@@ -27,15 +27,10 @@ def main(key, file_path, exercise):
                 {"role": "assistant", "content": "Format the feedback as markdown format"},
             ]
         )
-        print(response.choices[0]['message']['content'])
         
-        # response_json = json.loads(response.choices[0]['message']['content'])
-        # print(response_json[exercise])
-        # print(response_json[feedback])
-        
-        # fix_apostrophe = response.choices[0]['message']['content'].replace("\'","'")
-        # remove_quotes = json.dumps(fix_apostrophe)[1:-1]
-        # print(remove_quotes)
+        fix_apostrophe = response.choices[0]['message']['content'].replace("\'","'")
+        remove_quotes = json.dumps(fix_apostrophe)[1:-1]
+        print(remove_quotes)
     
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2], sys.argv[3])
