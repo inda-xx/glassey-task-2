@@ -58,7 +58,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r .github/workflows/requirements.txt
-
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           if [[ "${{ needs.parse-issue-title.outputs.result }}" == 'ama' ]]; then
             python .github/workflows/handle_ama.py
           elif [[ "${{ needs.parse-issue-title.outputs.result }}" == 'hint' ]]; then
@@ -66,7 +66,10 @@ jobs:
           elif [[ "${{ needs.parse-issue-title.outputs.result }}" == 'mend' ]]; then
             python .github/workflows/handle_mend.py
           elif [[ "${{ needs.parse-issue-title.outputs.result }}" == 'more' ]]; then
-            python .github/workflows/handle_more.py ${{ secrets.OPENAI_TOKEN }} README.md
+            echo "title=🤖 Here is a bonus exercise for you!" >> "$GITHUB_ENV"
+            echo "body<<$EOF" >> "$GITHUB_ENV"
+            python .github/workflows/handle_more.py ${{ secrets.OPENAI_TOKEN }} README.md >> "$GITHUB_ENV"
+            echo "$EOF" >> "$GITHUB_ENV"
           elif [[ "${{ needs.parse-issue-title.outputs.result }}" == 'rate' ]]; then
             python .github/workflows/handle_rate.py
           fi
@@ -80,6 +83,6 @@ jobs:
                 issue_number: "${{ github.event.issue.number }}",
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                title: "${{ steps.dispatch-handler.outputs.title }}",
-                body: "${{ steps.dispatch-handler.outputs.body }}",
+                title: "${{ env.title }}",
+                body: "${{ env.body }}",
               });
