@@ -24,6 +24,7 @@ def main(key, file_path, exercise):
                 {"role": "assistant", "content": assignment},
                 {"role": "assistant", "content": "Focus only on the specificed exercise " + exercise},
                 {"role": "assistant", "content": "Give helpful hints and tips but do not provide a complete solution. Examples are good that help the student get started, such as 'You can try this...' or 'Think about this...' and so on."},
+                {"role": "assistant", "content": "In terms of source code, at most you can provide skeleton code for inspiration, but it is the job of the student to write the code."},
                 {"role": "assistant", "content": "Format the feedback as markdown format"},
             ]
         )
