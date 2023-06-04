@@ -71,8 +71,7 @@ jobs:
             echo "title=🤖 Here is a bonus exercise for you!" >> "$GITHUB_ENV"
             echo "body<<$EOF" >> "$GITHUB_ENV"
             # python .github/workflows/handle_more.py ${{ secrets.OPENAI_TOKEN }} README.md >> "$GITHUB_ENV"
-            echo "test 1" >> "$GITHUB_ENV"
-            echo "test 2" >> "$GITHUB_ENV"
+            echo "test 1\ntest2" >> "$GITHUB_ENV"
             echo "$EOF" >> "$GITHUB_ENV"
           elif [[ "${{ needs.parse-issue-title.outputs.result }}" == 'rate' ]]; then
             python .github/workflows/handle_rate.py
