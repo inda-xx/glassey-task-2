@@ -10,7 +10,7 @@ def main(key, file_path):
         
     # Call openai api to generate question
     # See: https://platform.openai.com/docs/guides/chat/introduction for more information on the call
-    debug = True
+    debug = False
     if debug:
         sys.stdout.write("This is a test\nWith a new line")
     else:
@@ -24,7 +24,7 @@ def main(key, file_path):
                 {"role": "assistant", "content": "Format the exercise using markdown."},
             ]
         )
-        sys.stdout.write(response.choices[0]['message']['content'])
+        print(response.choices[0]['message']['content'])
     
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
