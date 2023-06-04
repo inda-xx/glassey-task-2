@@ -25,7 +25,8 @@ def main(key, file_path):
                 {"role": "assistant", "content": "Format the exercise in markdown and make sure it is a valid JSON string"},
             ]
         )
-        print(repr(json.dumps(response.choices[0]['message']['content'])))
+        
+        print(json.dumps(response.choices[0]['message']['content'].replace("\'","'")))
     
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
