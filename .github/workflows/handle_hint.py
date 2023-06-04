@@ -9,8 +9,7 @@ def main(key, file_path, exercise):
     with open(file_path, 'r') as file:
         assignment = file.read()
  
-    print(exercise)
-    # exercise = exercise.split()[1]
+    exercise = exercise.split()[1]
     
     # Call openai api to generate question
     # See: https://platform.openai.com/docs/guides/chat/introduction for more information on the call
