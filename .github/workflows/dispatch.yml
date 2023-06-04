@@ -82,9 +82,9 @@ jobs:
           github-token: ${{ secrets.API_TOKEN }}
           script: |
               github.rest.issues.update({
-                issue_number: ${{ github.event.issue.number }},
+                issue_number: "${{ github.event.issue.number }}",
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                title: ${{ env.title }},
-                body: ${{ env.body }},
+                title: "${{ env.title }}",
+                body: "${{ env.body }}",
               });
