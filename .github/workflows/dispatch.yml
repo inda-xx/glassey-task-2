@@ -73,7 +73,7 @@ jobs:
           elif [[ $title == hint* ]]; then
             echo "title=🤖 Here are some hints and tips for you!" >> "$GITHUB_ENV"
             echo "body<<$EOF" >> "$GITHUB_ENV"
-            python .github/workflows/handle_hint.py ${{ secrets.OPENAI_TOKEN }} README.md $title >> "$GITHUB_ENV"
+            python .github/workflows/handle_hint.py ${{ secrets.OPENAI_TOKEN }} README.md "$title" >> "$GITHUB_ENV"
             echo "$EOF" >> "$GITHUB_ENV"
           elif [[ $title == mend ]]; then
             python .github/workflows/handle_mend.py
