@@ -26,7 +26,7 @@ def main(key, file_path):
             ]
         )
         
-        print(json.dumps(response.choices[0]['message']['content'].replace("\'","'")))
+        print(json.loads(json.dumps(response.choices[0]['message']['content'].replace("\'","'").replace("\n", "\\n"))))
     
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
