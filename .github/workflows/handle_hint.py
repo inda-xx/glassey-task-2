@@ -23,10 +23,9 @@ def main(key, file_path, exercise):
             messages=[
                 {"role": "system", "content": "You are a teacher that wants to help a student by giving hints and tips on a specific exercise. Here is their overall assignment:"},
                 {"role": "assistant", "content": assignment},
-                {"role": "assistant", "content": "First, create a json object where each exercise has a key and the value is the text for that exercise. The format for the key should be X.Y where X and Y are integers."},
-                {"role": "assistant", "content": "Focus on the specificed exercise " + exercise},
+                {"role": "assistant", "content": "Focus only on the specificed exercise " + exercise},
                 {"role": "assistant", "content": "Give helpful hints and tips but do not provide a complete solution. Examples are good that help the student get started, such as 'You can try this...' or 'Think about this...' and so on."},
-                {"role": "assistant", "content": "Format the feedback in markdown and store it in the JSON object with the key 'feedback'"},
+                {"role": "assistant", "content": "Format the feedback as markdown format"},
             ]
         )
         print(response.choices[0]['message']['content'])
