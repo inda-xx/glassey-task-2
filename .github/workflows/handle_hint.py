@@ -29,9 +29,11 @@ def main(key, file_path, exercise):
                 {"role": "assistant", "content": "Format the feedback in markdown and store it in the JSON object with the key 'feedback'"},
             ]
         )
-        response_json = json.loads(response.choices[0]['message']['content'])
-        print(response_json[exercise])
-        print(response_json[feedback])
+        print(response.choices[0]['message']['content'])
+        
+        # response_json = json.loads(response.choices[0]['message']['content'])
+        # print(response_json[exercise])
+        # print(response_json[feedback])
         
         # fix_apostrophe = response.choices[0]['message']['content'].replace("\'","'")
         # remove_quotes = json.dumps(fix_apostrophe)[1:-1]
