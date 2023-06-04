@@ -29,7 +29,7 @@ def main(key, file_path):
     body = response_str_encoded
     
     print(f"::set-output name=title::{title}")
-    print(f"::set-output name=body::{body}")
+    print(repr(f"::set-output name=body::{response_str}"))
 
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
