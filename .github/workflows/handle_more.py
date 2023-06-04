@@ -10,7 +10,7 @@ def main(key, file_path):
         
     # Call openai api to generate question
     # See: https://platform.openai.com/docs/guides/chat/introduction for more information on the call
-    debug = true
+    debug = True
     if debug:
         sys.stdout.write("This is a test\nWith a new line")
     else:
