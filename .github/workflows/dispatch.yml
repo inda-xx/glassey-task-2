@@ -75,6 +75,7 @@ jobs:
           elif [[ "${{ needs.parse-issue-title.outputs.result }}" == 'rate' ]]; then
             python .github/workflows/handle_rate.py
           fi
+          echo $GITHUB_ENV
       
       - name: Update issue
         uses: actions/github-script@v6
