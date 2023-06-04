@@ -25,8 +25,9 @@ def main(key, file_path):
                 {"role": "assistant", "content": "Format the exercise in markdown and make sure it is a valid JSON string"},
             ]
         )
-        
-        print(json.loads(json.dumps(response.choices[0]['message']['content'].replace("\'","'").replace("\n", "\\n"))))
+        fix_apostrophe = response.choices[0]['message']['content'].replace("\'","'")
+        remove_quotes = json.dumps(fix_apostrophe)[1:-1]
+        print(remove_quotes)
     
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
