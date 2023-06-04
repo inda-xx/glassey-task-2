@@ -22,7 +22,7 @@ def main(key, file_path):
                 {"role": "assistant", "content": readme},
                 {"role": "assistant", "content": "Provide the next exercise that builds upon the original series of exercises and reinforces the skills they are testing."},
                 {"role": "assistant", "content": "Do not repeat instructions already given in the overall task."},
-                {"role": "assistant", "content": "Format the exercise as a valid JSON string"},
+                {"role": "assistant", "content": "Format the exercise in markdown and make sure it is a valid JSON string"},
             ]
         )
         print(response.choices[0]['message']['content'])
