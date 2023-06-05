@@ -7,6 +7,7 @@ def main(key, file_path):
     openai.api_key = key
     
     file_path = file_path.split()[1]
+    source_code = ""
     with open(file_path, 'r') as file:
         source_code = file.read()
         
@@ -16,7 +17,7 @@ def main(key, file_path):
         model="gpt-4",
         messages=[
             {"role": "system", "content": "You are a teacher that wants to help a student by improving their code quality and code comprehensibility."},
-            {"role": "assistant", "content": "Here is the code they want help with:"}
+            {"role": "assistant", "content": "Here is the code they want help with:"},
             {"role": "assistant", "content": source_code},
             {"role": "assistant", "content": "If the above code is not Java source code, then it is ok to tell them that the file they submitted was not a recognised Java file and they should try again."},
             {"role": "assistant", "content": "If the above code is Java source code, then give them a short list of code quality improvements that help improve code comprehensibility."},
