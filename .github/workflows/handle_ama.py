@@ -11,7 +11,7 @@ def main(key):
     source_file_list = [line.strip() for line in sys.stdin]
     source_file = random.choice(source_file_list)
     with open(source_file, 'r') as file:
-        source_code += file.read()
+        source_code = file.read()
         
     # Call openai api to generate question
     # See: https://platform.openai.com/docs/guides/chat/introduction for more information on the call
