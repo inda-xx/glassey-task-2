@@ -28,15 +28,7 @@ def main(key):
     response_json = json.loads(response.choices[0]['message']['content'])
 
     # Print issue body
-    print(response_json['question'])
-    
-    #print("**" + response_json['question'] + "**" + " <br /> <br /> " + 
-    #    "A: " + response_json['answer1'] + " <br /> " +
-    #    "<details><summary>...</summary>" + "_Explanation: " + response_json['explanation1'] + "_" + " </details>" +
-    #    "B: " + response_json['answer2'] + " <br /> " +
-    #    "<details><summary>...</summary>" + "_Explanation: " + response_json['explanation2'] + "_" + " </details>" +
-    #    "C: " + response_json['answer3'] + " <br /> " +
-    #    "<details><summary>...</summary>" + "_Explanation: " + response_json['explanation3'] + "_" + " </details>")
+    print("**" + response_json['question'] + "**" + " <br /> <br /> " +  "A: " + response_json['answer1'] + " <br /> " + "<details><summary>...</summary>" + "_Explanation: " + response_json['explanation1'] + "_" + " </details>" + "B: " + response_json['answer2'] + " <br /> " + "<details><summary>...</summary>" + "_Explanation: " + response_json['explanation2'] + "_" + " </details>" + "C: " + response_json['answer3'] + " <br /> " + "<details><summary>...</summary>" + "_Explanation: " + response_json['explanation3'] + "_" + " </details>")
 
 if __name__ == "__main__":
     main(sys.argv[1])
