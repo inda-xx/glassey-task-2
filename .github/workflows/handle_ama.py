@@ -1,9 +1,41 @@
-def main():
-    title = "🤖 Answer this question about your code!"
-    body = "This is a dummy body"
-    print(f"::set-output name=title::{title}")
-    print(f"::set-output name=body::{body}")
+import os
+import sys
+import openai
+import json
+
+def main(key):
+    openai.api_key = key
+    
+    # Concatenate all java files found in repo
+    all_source_code = ""
+    for source_file in sys.stdin:
+        source_file = source_file.strip("./")
+        source_file = source_file.strip()
+        with open(source_file, 'r') as file:
+            all_source_code += file.read()
+        
+    # Call openai api to generate question
+    # See: https://platform.openai.com/docs/guides/chat/introduction for more information on the call
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[
+            {"role": "system", "content": "You are a teacher that wants to help a student understand their programming assignment."},
+            {"role": "assistant", "content": "Given the following student source code, generate a multiple choice question about the code to test understanding of the code. The question should have three answer options and explanations for each answer option.\n\n"},
+            {"role": "assistant", "content": all_source_code},
+            {"role": "assistant", "content": "The response should be formatted as a json object with the following fields: question, answer1, answer2, answer3, explanation1, explanation2, explanation3."},
+        ]
+    )
+    response_json = json.loads(response.choices[0]['message']['content'])
+
+    # Print issue body
+    print("**" + response_json['question'] + "**" + " <br /> <br /> " + 
+        "A: " + response_json['answer1'] + " <br /> " +
+        "<details><summary>...</summary>" + "_Explanation: " + response_json['explanation1'] + "_" + " </details>" +
+        "B: " + response_json['answer2'] + " <br /> " +
+        "<details><summary>...</summary>" + "_Explanation: " + response_json['explanation2'] + "_" + " </details>" +
+        "C: " + response_json['answer3'] + " <br /> " +
+        "<details><summary>...</summary>" + "_Explanation: " + response_json['explanation3'] + "_" + " </details>")
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1])
  
