@@ -6,7 +6,13 @@ import json
 def main(key, file_path):
     openai.api_key = key
     
-    file_path = file_path.split()[1]
+    file_name = file_path.split()[1]
+
+    for root, dirs, files in os.walk(os.getcwd()):
+        if file_name in files:
+            file_path = os.path.join(root, file_name)
+            break
+    
     source_code = ""
     with open(file_path, 'r') as file:
         source_code = file.read()
