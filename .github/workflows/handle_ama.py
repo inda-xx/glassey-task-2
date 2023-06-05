@@ -8,7 +8,8 @@ def main(key):
     openai.api_key = key
     
     # Strategy 2: Pick a random file from all java files found in repo
-    source_file = random.choice(sys.stdin)
+    source_file_list = [line.strip() for line in sys.stdin]
+    source_file = random.choice(source_file_list)
     with open(source_file, 'r') as file:
         source_code += file.read()
         
