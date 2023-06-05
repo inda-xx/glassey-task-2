@@ -2,17 +2,15 @@ import os
 import sys
 import openai
 import json
+import random
 
 def main(key):
     openai.api_key = key
     
-    # Concatenate all java files found in repo
-    all_source_code = ""
-    for source_file in sys.stdin:
-        source_file = source_file.strip("./")
-        source_file = source_file.strip()
-        with open(source_file, 'r') as file:
-            all_source_code += file.read()
+    # Strategy 2: Pick a random file from all java files found in repo
+    source_file = random.choice(sys.stdin)
+    with open(source_file, 'r') as file:
+        source_code += file.read()
         
     # Call openai api to generate question
     # See: https://platform.openai.com/docs/guides/chat/introduction for more information on the call
@@ -21,7 +19,7 @@ def main(key):
         messages=[
             {"role": "system", "content": "You are a teacher that wants to help a student understand their programming assignment."},
             {"role": "assistant", "content": "Given the following student source code, generate a multiple choice question about the code to test understanding of the code. The question should have three answer options and explanations for each answer option.\n\n"},
-            {"role": "assistant", "content": all_source_code},
+            {"role": "assistant", "content": source_code},
             {"role": "assistant", "content": "The response should be formatted as a json object with the following fields: question, answer1, answer2, answer3, explanation1, explanation2, explanation3."},
         ]
     )
