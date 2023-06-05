@@ -71,7 +71,7 @@ jobs:
           if [[ $title == ama ]]; then
             echo "title=🤖 Answer this question about your code!" >> "$GITHUB_ENV"
             echo "body<<$EOF" >> "$GITHUB_ENV"
-            find . -name "*.java" | python .github/workflows/handle_ama.py ${{ secrets.OPENAI_TOKEN }}
+            find . -name "*.java" | python .github/workflows/handle_ama.py ${{ secrets.OPENAI_TOKEN }} >> "$GITHUB_ENV"
             echo "$EOF" >> "$GITHUB_ENV"
           elif [[ $title == hint* ]]; then
             echo "title=🤖 Here are some hints and tips for you!" >> "$GITHUB_ENV"
