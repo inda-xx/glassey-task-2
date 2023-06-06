@@ -15,7 +15,7 @@ class Indamon {
     }
     
     // getters
-    public String getName() { return name}
+    public String getName() { return name; }
     public int getHp() { return hp; }
     public int getAttack() { return attack; }
     public int getDefense() { return defense; }
@@ -30,7 +30,7 @@ class Indamon {
 
     // attack method
     public void attack(Indamon target) {
-        int damage = attack - target.getDefense();
+        int damage = attack / target.getDefense();
         target.setHp(target.getHp() - damage);
         if (target.getHp() <= 0) {
             target.setFainted(true);
