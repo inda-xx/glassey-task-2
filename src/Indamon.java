@@ -22,10 +22,10 @@ class Indamon {
     public boolean getFainted() { return fainted; }
 
     // setters
-    public void setName() { }
-    public void setHp() { }
-    public void setAttack() { }
-    public void setDefense() { }
+    public void setName(String name) { this.name = name; }
+    public void setHp(int hp) { this.hp = hp; }
+    public void setAttack(int attack) { this.attack = attack; }
+    public void setDefense(int attack) { this.defense = defense; }
     public void setFainted() { }
         
     
