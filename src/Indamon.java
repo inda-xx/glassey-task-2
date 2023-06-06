@@ -6,7 +6,7 @@ class Indamon {
     private int defense;
     private boolean fainted;
     
-    public Indamon(String name, int hp, int, attack, int defense) {
+    public Indamon(String name, int hp, int attack, int defense) {
         this.name = name;
         this.hp = hp;
         this.attack = attack;
@@ -25,12 +25,36 @@ class Indamon {
     public void setName(String name) { this.name = name; }
     public void setHp(int hp) { this.hp = hp; }
     public void setAttack(int attack) { this.attack = attack; }
-    public void setDefense(int attack) { this.defense = defense; }
-    public void setFainted() { }
-        
+    public void setDefense(int defense) { this.defense = defense; }
+    public void setFainted(boolean fainted) { this.fainted = fainted;}
+
+    // attack method
+    public void attack(Indamon target) {
+        int damage = attack / target.getDefense();
+        target.setHp(target.getHp() - damage);
+        if (target.getHp() <= 0) {
+            target.setFainted(true);
+        }
+    }
+
+    // print info method
+    public void printInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("HP: " + hp);
+        System.out.println("Attack: " + attack);
+        System.out.println("Defense: " + defense);
+        System.out.println("Fainted: " + fainted);
+    }   
     
     public static void main(String[] args) {
         // create a new "Indamon" object
-        Indamon glassey = new Indamon("Glassey", 10, 5, 5);    
+        Indamon glassey = new Indamon("Glassey", 10, 5, 5);
+        Indamon siberov = new Indamon("Siberov", 10, 5, 5);
+        // print out the object's info
+        glassey.printInfo();
+        siberov.printInfo();
+        // call the attack method
+        glassey.attack(siberov);
+        siberov.printInfo();
     } // end main method
 }
