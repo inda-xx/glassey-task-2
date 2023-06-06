@@ -89,9 +89,16 @@ jobs:
             python .github/workflows/handle_more.py ${{ secrets.OPENAI_TOKEN }} README.md >> "$GITHUB_ENV"
             echo "$EOF" >> "$GITHUB_ENV"
           elif [[ $title == rate ]]; then
+            # First, check if the code compiles in ./src
+            # ... >> compile.md
+            # Second, download junit dependencies into ./src
+            # ... curl jars
+            # Third, run the tests and report the results in ./src
+            # ... >> tests.md
+            # Fourth, let GPT-4 grade the code against the task description, with the results of compilation and testing.
             echo "title=🤖 Here is my soft grading decision!" >> "$GITHUB_ENV"
             echo "body<<$EOF" >> "$GITHUB_ENV"
-            find . -name "*.java" | python .github/workflows/handle_rate.py ${{ secrets.OPENAI_TOKEN }} README.md >> "$GITHUB_ENV"
+            find . -name "*.java" | grep -v 'Test\.java$' | python .github/workflows/handle_rate.py ${{ secrets.OPENAI_TOKEN }} README.md >> "$GITHUB_ENV"
             echo "$EOF" >> "$GITHUB_ENV"
           fi
       
