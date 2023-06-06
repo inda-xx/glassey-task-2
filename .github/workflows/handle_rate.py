@@ -37,8 +37,8 @@ def main(key, readme_path, compile_path, tests_path):
             {"role": "assistant", "content": compile_output},
             {"role": "assistant", "content": "Second, we have the results of running the unit tests:"},
             {"role": "assistant", "content": tests_output},
-            {"role": "assistant", "content": "Together, the compiler output and unit tests give us an objective measure of the code.}
-            {"role": "assistant", "content": "Finally, here is the task they are attempting to complete.}
+            {"role": "assistant", "content": "Together, the compiler output and unit tests give us an objective measure of the code.},
+            {"role": "assistant", "content": "Finally, here is the task they are attempting to complete.},
             {"role": "assistant", "content": readme},
             {"role": "assistant", "content": "Provide a decision for each exercise if they have managed to satisfy it or not, based on their source code, compilation status and unit tests."},
             {"role": "assistant", "content": "Format the decisions as a list with each exercise as an item, followed by the decision feedback"},
