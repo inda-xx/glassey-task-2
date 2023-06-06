@@ -18,7 +18,7 @@ class Indamon {
     public String getName() { return name; }
     public int getHp() { return hp; }
     public int getAttack() { return attack; }
-
+    public int getDefense() { return defense; }
     public boolean getFainted() { return fainted; }
 
     // setters
