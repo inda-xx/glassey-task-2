@@ -15,11 +15,11 @@ class Indamon {
     }
     
     // getters
-    public String getName() { }
-    public int getHp() { }
-    public int getAttack() { }
-    public int getDefense() { }
-    public boolean getFainted() { }
+    public String getName() { return name;}
+    public int getHp() { return hp; }
+    public int getAttack() { return attack; }
+    public int getDefense() { return defense; }
+    public boolean getFainted() { return fainted; }
 
     // setters
     public void setName() { }
