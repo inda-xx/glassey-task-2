@@ -1,25 +1,36 @@
 class Indamon {
 
-    String name;
-    int hp;
-    int attack;
-    int defense;
-    boolean fainted;
+    private String name;
+    private int hp;
+    private int attack;
+    private int defense;
+    private boolean fainted;
+    
+    public Indamon(String name, int hp, int, attack, int defense) {
+        this.name = name;
+        this.hp = hp;
+        this.attack = attack;
+        this.defense = defense;
+        fainted = false;
+    }
+    
+    // getters
+    public String getName() { }
+    public int getHp() { }
+    public int getAttack() { }
+    public int getDefense() { }
+    public boolean getFainted() { }
 
+    // setters
+    public void setName() { }
+    public void setHp() { }
+    public void setAttack() { }
+    public void setDefense() { }
+    public void setFainted() { }
+        
+    
     public static void main(String[] args) {
         // create a new "Indamon" object
-        Indamon glassey = new Indamon();
-    
-        // assign the instance variables to meaningful values
-        glassey.name = "Glassey";
-        glassey.hp = 10;
-        glassey.attack = 5;
-        glassey.defense = 5;
-    
-        // get the information of the assigned values
-        System.out.println("Name: " + glassey.name);
-        System.out.println("HP: " + glassey.hp);
-        System.out.println("Attack value: " + glassey.attack);
-        System.out.println("Defense value: " + glassey.defense);
-      } // end main method
+        Indamon glassey = new Indamon("Glassey", 10, 5, 5);    
+    } // end main method
 }
