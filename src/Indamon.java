@@ -29,7 +29,7 @@ class Indamon {
     public void setFainted(boolean fainted) { this.fainted = fainted;}
 
     // attack method
-    public void attack(Indamon target) {
+    public void attackOponnent(Indamon target) {
         int damage = attack / target.getDefense();
         target.setHp(target.getHp() - damage);
         if (target.getHp() <= 0) {
