@@ -15,7 +15,7 @@ class Indamon {
     }
     
     // getters
-    public String getName() { return name;}
+    public String getName() { return name}
     public int getHp() { return hp; }
     public int getAttack() { return attack; }
     public int getDefense() { return defense; }
