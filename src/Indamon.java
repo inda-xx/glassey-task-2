@@ -5,31 +5,6 @@ class Indamon {
     int attack;
     int defense;
     boolean fainted;
-    
-    public Indamon(name, hp, attack, defense) {
-        this.name = name;
-        this.hp = hp;
-        this.attack = attack;
-        this.defense = defense;
-        fainted = false;
-    }
-    
-    public void attack(Indamon opponent) {
-        opponent.hp = opponent.hp - (this.attack / opponent.defense);
-        if (opponent.hp <= 0) {
-            opponent.hp = 0;
-            opponent.fainted = true;
-        }
-    }
-    
-    public void printInfo() {
-        System.out.println("INFO");
-        System.out.println("Indamon: " + name);
-        System.out.println("HP: " + hp);
-        System.out.println("Attack: " + attack);
-        System.out.println("Defense: " + defense);
-        System.out.println("Fainted: " + fainted);
-    }
 
     public static void main(String[] args) {
         // create a new "Indamon" object
