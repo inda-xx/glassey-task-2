@@ -41,8 +41,9 @@ def main(key, readme_path, compile_path, tests_path):
             {"role": "assistant", "content": "Finally, here is the task they are attempting to complete."},
             {"role": "assistant", "content": readme},
             {"role": "assistant", "content": "Provide a decision for each exercise if they have managed to satisfy it or not, based on their source code, compilation status and unit tests."},
-            {"role": "assistant", "content": "Format the decisions as a list with each exercise as an item, followed by the decision feedback"},
-            {"role": "assistant", "content": "Finally, provide a grading decision as Looks good to me, or, Needs more work, with an appropriate emojii"},
+            {"role": "assistant", "content": "Format the decisions as a list with each exercise as an item, followed by the decision feedback."},
+            {"role": "assistant", "content": "Note that the students may not have access to the unit tests at this stage, so try to just refer to expected code behaviour from the exercise."},
+            {"role": "assistant", "content": "Finally, provide a grading decision as Looks good to me, or, Needs more work, with an appropriate emojii, and remind them that this is just a soft grading judgement and their TAs decision is the final say."},
             {"role": "assistant", "content": "The response should be formatted in markdown format"},
         ]
     )
