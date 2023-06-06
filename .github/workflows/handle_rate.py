@@ -19,8 +19,6 @@ def main(key, readme_path, compile_path, tests_path):
     
     with open(compile_path, 'r') as file:
         compile_output = file.read()
-        if compile_output == "":
-            compile_output = "The code compiled sucessfully."
     
     with open(tests_path, 'r') as file:
         tests_output = file.read()
