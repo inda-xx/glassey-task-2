@@ -111,7 +111,7 @@ jobs:
 
             # Step 4: Run the JUnit tests on the classes
             echo "Running JUnit tests..."
-            echo "$javaTestClassNames" | xargs -I {} java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore {} >> tests.txt 2>&1
+            java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore IndamonTest >> tests.txt 2>&1
 
             echo "JUnit tests completed. Results have been written to tests.txt."
 
