@@ -96,7 +96,8 @@ jobs:
             curl -O https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
             # Compile and run the tests
             javac -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar *.java > compile.txt 2>&1
-            find . -name "*Test.class" | sed -e 's/\.class//g' -e 's/\.\///g' -e 's/\//\./g' | xargs -I {} java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore {} >> tests.txt 2>&1
+            find . -name "*Test.class" -execdir bash -c 'java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore $(basename {} .class)' >> tests.txt 2>&1
+            # find . -name "*Test.class" | sed -e 's/\.class//g' -e 's/\.\///g' -e 's/\//\./g' | xargs -I {} java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore {} >> tests.txt 2>&1
             cd ..
             # Let GPT-4 grade the code against the task description, with the results of compilation and testing.
             echo "title=🤖 Here is my soft grading decision!" >> "$GITHUB_ENV"
